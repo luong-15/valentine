@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Great Vibes', cursive;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease, margin-top 0.5s ease;
+        }
+
+        .container.show {
+            opacity: 1;
+            transform: translateY(0);
+            margin-top: -50px;
+        }
+
+        h1 {
+            color: #ff4d4d;
+            font-size: 3em;
+            margin-bottom: 1rem;
+        }
+
+        .message {
+            font-size: 1.5em;
+            color: #333;
+            max-width: 500px;
+            margin: 1rem auto;
+        }
+
+        .avatar-container {
+            display: flex;
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1rem;
+        }
+
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 3px solid #ff4d4d;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            animation: heartAnimation 2s linear infinite;
+        }
+
+        @keyframes heartAnimation {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+
+            50% {
+                transform: translateY(-50px) scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .falling-element {
+            position: absolute;
+            font-size: 2em;
+            animation: fall linear;
+            opacity: 1;
+            white-space: nowrap;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        #myButton {
+            position: absolute;
+            background: none;
+            top: 50%;
+            left: 50%;
+            z-index: 10;
+            border: none;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.5s ease, transform 0.3s ease;
+            cursor: pointer;
+            animation: shake 1.5s infinite;
+        }
+
+        #myButton.hidden {
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            25% {
+                transform: translate(-50%, -50%) rotate(10deg);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) rotate(-10deg);
+            }
+
+            75% {
+                transform: translate(-50%, -50%) rotate(5deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="fontview">        
+        <button id="myButton">
+            <img src="https://png.pngtree.com/png-vector/20221227/ourmid/pngtree-love-gift-box-heart-icon-png-image_6539384.png"
+            alt="love" width="250px" height="250px">
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="avatar-container">
+            <img src="https://denngocson.com/wp-content/uploads/2024/10/anh-avatar-vo-tri-8NRtxVT.jpg" alt="Avatar"
+                class="avatar">
+        </div>
+        <h1>Happy Valentine's Day!</h1>
+        <p class="message">
+            " Valentine này, anh chẳng cần gì <br>
+            Chỉ cần có em, ở bên cạnh <br>
+            Tình yêu anh, như là biển lớn <br>
+            Ôm trọn em, mãi mãi về sau." <br><br>
+            Valentine đến rồi, anh chúc em luôn xinh đẹp, rạng rỡ và hạnh phúc. Anh sẽ luôn ở bên em, che chở cho em
+            trên suốt con đường đời.<br>
+            i love you!<br>
+        </p>
+    </div>
+
+    <script>
+        function showConfetti() {
+            const elements = ['💖', '🍫'];
+
+            for (let i = 0; i < 10; i++) {
+                const element = elements[Math.floor(Math.random() * elements.length)];
+                const fallingElement = document.createElement('div');
+                fallingElement.classList.add('falling-element');
+                fallingElement.textContent = element;
+                fallingElement.style.left = Math.random() * 100 + 'vw';
+                fallingElement.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                fallingElement.style.top = -Math.random() * 100 + 'vh';
+                fallingElement.style.animationDelay = `${Math.random() * 2}s`;
+
+                document.body.appendChild(fallingElement);
+
+                fallingElement.addEventListener('animationend', () => {
+                    fallingElement.remove();
+                });
+            }
+        }
+
+        const button = document.getElementById("myButton");
+        const backgroundbutton = document.getElementById("background-button");
+        const container = document.querySelector(".container");
+        const heartsContainer = document.querySelector(".avatar-container");
+
+        button.addEventListener("click", function () {
+            button.classList.add("hidden");
+            container.classList.add("show");
+            setInterval(showConfetti, 1000);
+
+
+            for (let i = 0; i < 5; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+
+                const heartIcons = ['❤️', '💖', '💕', '💓'];
+                const randomIcon = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+
+                //Option 1: Use Emoji
+                heart.textContent = randomIcon; // Set emoji as text content
+
+                //Option 2: Use Image URL.  Uncomment below if you want to use images instead of emojis, and comment out the heart.textContent line above.
+                /*const img = document.createElement('img');
+                img.src = "path/to/your/heart/image" + (Math.floor(Math.random() * 3) + 1) + ".png"; // Example: image1.png, image2.png, image3.png.  Adjust file names.
+                img.style.width="20px"; // Adjust size as needed
+                img.style.height="20px"; // Adjust size as needed
+                heart.appendChild(img);*/
+
+
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heartsContainer.appendChild(heart);
+            }
+        });
+
+        function isMobileDevice() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
+        }
+
+        // Add shake animation if on mobile
+        if (isMobileDevice()) {
+            button.classList.add("hover");
+        }
+    </script>
+</body>
+
+</html>
